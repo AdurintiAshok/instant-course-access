@@ -8,6 +8,7 @@ export interface Course {
   price: string;
   instructor: string;
   level: string;
+  projects: string[];
   syllabus: {
     week: number;
     title: string;
@@ -25,6 +26,10 @@ export const courses: Course[] = [
     price: "$299",
     instructor: "Sarah Johnson",
     level: "Beginner to Intermediate",
+    projects: [
+      "Build a responsive e-commerce website with React and Node.js",
+      "Create a real-time chat application with WebSocket integration"
+    ],
     syllabus: [
       {
         week: 1,
@@ -67,6 +72,10 @@ export const courses: Course[] = [
     price: "$249",
     instructor: "Dr. Michael Chen",
     level: "Intermediate",
+    projects: [
+      "Analyze sales data and create interactive dashboards",
+      "Build a machine learning model for customer behavior prediction"
+    ],
     syllabus: [
       {
         week: 1,
@@ -104,6 +113,10 @@ export const courses: Course[] = [
     price: "$199",
     instructor: "Emma Rodriguez",
     level: "Beginner",
+    projects: [
+      "Launch a complete digital marketing campaign for a local business",
+      "Create and optimize a content marketing strategy with measurable results"
+    ],
     syllabus: [
       {
         week: 1,
@@ -136,6 +149,10 @@ export const courses: Course[] = [
     price: "$179",
     instructor: "Alex Kim",
     level: "Beginner",
+    projects: [
+      "Design a complete mobile app interface from wireframes to high-fidelity prototypes",
+      "Conduct user research and redesign an existing website for better usability"
+    ],
     syllabus: [
       {
         week: 1,
@@ -155,3 +172,21 @@ export const courses: Course[] = [
     ]
   }
 ];
+
+// Payment configuration
+export const paymentConfig = {
+  phoneNumber: "+1-555-LEARN-01",
+  qrCodeUrl: "/api/placeholder/200/200", // This would be replaced with actual QR code
+  bankDetails: {
+    accountName: "LearnHub Academy",
+    accountNumber: "****1234",
+    routingNumber: "****5678"
+  }
+};
+
+// Generate unique payment reference
+export const generatePaymentReference = (courseId: string, timestamp: number): string => {
+  const coursePrefix = courseId.padStart(2, '0');
+  const timeHash = timestamp.toString(36).slice(-6).toUpperCase();
+  return `LH${coursePrefix}${timeHash}`;
+};

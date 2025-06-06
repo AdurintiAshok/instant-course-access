@@ -5,9 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { Course } from '@/data/courses';
-import { Upload, Loader2, CheckCircle, User, Mail, Phone, GraduationCap, Clock, CreditCard } from 'lucide-react';
+import { Upload, Loader2, CheckCircle, User, Mail, Phone, GraduationCap, Clock, CreditCard, ArrowRight } from 'lucide-react';
+import PaymentDetails from './PaymentDetails';
 
 interface RegistrationModalProps {
   isOpen: boolean;
@@ -19,6 +21,7 @@ interface RegistrationModalProps {
 const RegistrationModal = ({ isOpen, onClose, selectedCourse, courses }: RegistrationModalProps) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentTab, setCurrentTab] = useState('form');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -63,197 +66,231 @@ const RegistrationModal = ({ isOpen, onClose, selectedCourse, courses }: Registr
       preferredBatch: '',
       paymentScreenshot: null
     });
+    setCurrentTab('form');
   };
 
   const selectedCourseData = courses.find(c => c.id === formData.courseId);
 
+  const proceedToPayment = () => {
+    if (!formData.name || !formData.email || !formData.courseId) {
+      toast({
+        title: "Please fill required fields",
+        description: "Name, email, and course selection are required to proceed.",
+        variant: "destructive"
+      });
+      return;
+    }
+    setCurrentTab('payment');
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-0 shadow-2xl">
+      <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-0 shadow-2xl">
         <DialogHeader className="pb-6 border-b border-slate-100">
           <DialogTitle className="text-3xl font-bold text-center">
-            <span className="text-gradient">Join Our Course</span>
+            <span className="text-gradient">Course Registration</span>
           </DialogTitle>
           <p className="text-slate-600 text-center mt-2">
-            Fill out the form below to start your learning journey
+            Complete your registration in two simple steps
           </p>
         </DialogHeader>
         
-        <form onSubmit={handleSubmit} className="space-y-6 pt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-slate-700 font-medium flex items-center">
-                <User className="w-4 h-4 mr-2 text-blue-600" />
-                Full Name *
-              </Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                placeholder="Enter your full name"
-                className="rounded-xl border-slate-200 py-3 focus:border-blue-500"
-                required
-              />
-            </div>
+        <Tabs value={currentTab} onValueChange={setCurrentTab} className="pt-6">
+          <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsTrigger value="form" className="flex items-center">
+              <User className="w-4 h-4 mr-2" />
+              Personal Details
+            </TabsTrigger>
+            <TabsTrigger value="payment" className="flex items-center">
+              <CreditCard className="w-4 h-4 mr-2" />
+              Payment Info
+            </TabsTrigger>
+          </TabsList>
 
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-slate-700 font-medium flex items-center">
-                <Mail className="w-4 h-4 mr-2 text-green-600" />
-                Email Address *
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-                placeholder="Enter your email"
-                className="rounded-xl border-slate-200 py-3 focus:border-blue-500"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="phone" className="text-slate-700 font-medium flex items-center">
-              <Phone className="w-4 h-4 mr-2 text-purple-600" />
-              Phone Number *
-            </Label>
-            <Input
-              id="phone"
-              value={formData.phone}
-              onChange={(e) => handleInputChange('phone', e.target.value)}
-              placeholder="Enter your phone number"
-              className="rounded-xl border-slate-200 py-3 focus:border-blue-500"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="course" className="text-slate-700 font-medium flex items-center">
-              <GraduationCap className="w-4 h-4 mr-2 text-indigo-600" />
-              Selected Course *
-            </Label>
-            <Select 
-              value={formData.courseId} 
-              onValueChange={(value) => handleInputChange('courseId', value)}
-              required
-            >
-              <SelectTrigger className="rounded-xl border-slate-200 py-3">
-                <SelectValue placeholder="Select a course" />
-              </SelectTrigger>
-              <SelectContent>
-                {courses.map((course) => (
-                  <SelectItem key={course.id} value={course.id}>
-                    {course.title} - {course.price}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {selectedCourseData && (
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
-              <h4 className="font-semibold text-slate-800 mb-3 flex items-center">
-                <CheckCircle className="w-5 h-5 mr-2 text-green-600" />
-                Course Details
-              </h4>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="text-slate-600">Duration:</span>
-                  <span className="ml-2 font-medium text-slate-800">{selectedCourseData.duration}</span>
+          <TabsContent value="form">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-slate-700 font-medium flex items-center">
+                    <User className="w-4 h-4 mr-2 text-blue-600" />
+                    Full Name *
+                  </Label>
+                  <Input
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    placeholder="Enter your full name"
+                    className="rounded-xl border-slate-200 py-3 focus:border-blue-500"
+                    required
+                  />
                 </div>
-                <div>
-                  <span className="text-slate-600">Instructor:</span>
-                  <span className="ml-2 font-medium text-slate-800">{selectedCourseData.instructor}</span>
-                </div>
-                <div>
-                  <span className="text-slate-600">Price:</span>
-                  <span className="ml-2 font-bold text-green-600">{selectedCourseData.price}</span>
-                </div>
-                <div>
-                  <span className="text-slate-600">Level:</span>
-                  <span className="ml-2 font-medium text-slate-800">{selectedCourseData.level}</span>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-slate-700 font-medium flex items-center">
+                    <Mail className="w-4 h-4 mr-2 text-green-600" />
+                    Email Address *
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    placeholder="Enter your email"
+                    className="rounded-xl border-slate-200 py-3 focus:border-blue-500"
+                    required
+                  />
                 </div>
               </div>
-            </div>
-          )}
 
-          <div className="space-y-2">
-            <Label htmlFor="batch" className="text-slate-700 font-medium flex items-center">
-              <Clock className="w-4 h-4 mr-2 text-orange-600" />
-              Preferred Batch *
-            </Label>
-            <Select 
-              value={formData.preferredBatch} 
-              onValueChange={(value) => handleInputChange('preferredBatch', value)}
-              required
-            >
-              <SelectTrigger className="rounded-xl border-slate-200 py-3">
-                <SelectValue placeholder="Select preferred batch" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="morning">🌅 Morning Batch (9 AM - 12 PM)</SelectItem>
-                <SelectItem value="afternoon">☀️ Afternoon Batch (2 PM - 5 PM)</SelectItem>
-                <SelectItem value="evening">🌆 Evening Batch (6 PM - 9 PM)</SelectItem>
-                <SelectItem value="weekend">🎯 Weekend Batch (Sat-Sun)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-slate-700 font-medium flex items-center">
+                  <Phone className="w-4 h-4 mr-2 text-purple-600" />
+                  Phone Number *
+                </Label>
+                <Input
+                  id="phone"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  placeholder="Enter your phone number"
+                  className="rounded-xl border-slate-200 py-3 focus:border-blue-500"
+                  required
+                />
+              </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="payment" className="text-slate-700 font-medium flex items-center">
-              <CreditCard className="w-4 h-4 mr-2 text-emerald-600" />
-              Payment Screenshot *
-            </Label>
-            <div className="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:border-blue-300 transition-colors bg-slate-50">
-              <input
-                id="payment"
-                type="file"
-                accept=".jpg,.jpeg,.png,.pdf"
-                onChange={handleFileChange}
-                className="hidden"
-                required
-              />
-              <Label htmlFor="payment" className="cursor-pointer block">
-                <Upload className="w-12 h-12 mx-auto mb-4 text-slate-400" />
-                <p className="text-lg font-medium text-slate-700 mb-2">
-                  {formData.paymentScreenshot ? formData.paymentScreenshot.name : 'Upload Payment Screenshot'}
-                </p>
-                <p className="text-sm text-slate-500">
-                  Drag & drop or click to browse • JPG, PNG, PDF (max 5MB)
-                </p>
-              </Label>
-            </div>
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="course" className="text-slate-700 font-medium flex items-center">
+                  <GraduationCap className="w-4 h-4 mr-2 text-indigo-600" />
+                  Selected Course *
+                </Label>
+                <Select 
+                  value={formData.courseId} 
+                  onValueChange={(value) => handleInputChange('courseId', value)}
+                  required
+                >
+                  <SelectTrigger className="rounded-xl border-slate-200 py-3">
+                    <SelectValue placeholder="Select a course" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {courses.map((course) => (
+                      <SelectItem key={course.id} value={course.id}>
+                        {course.title} - {course.price}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
 
-          <div className="flex gap-4 pt-6 border-t border-slate-100">
-            <Button 
-              type="button" 
-              variant="outline" 
-              onClick={onClose} 
-              className="flex-1 py-3 rounded-xl border-2"
-            >
-              Cancel
-            </Button>
-            <Button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="flex-1 btn-primary text-white py-3 rounded-xl font-semibold"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                  Processing...
-                </>
-              ) : (
-                <>
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  Complete Registration
-                </>
+              <div className="space-y-2">
+                <Label htmlFor="batch" className="text-slate-700 font-medium flex items-center">
+                  <Clock className="w-4 h-4 mr-2 text-orange-600" />
+                  Preferred Batch *
+                </Label>
+                <Select 
+                  value={formData.preferredBatch} 
+                  onValueChange={(value) => handleInputChange('preferredBatch', value)}
+                  required
+                >
+                  <SelectTrigger className="rounded-xl border-slate-200 py-3">
+                    <SelectValue placeholder="Select preferred batch" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="morning">🌅 Morning Batch (9 AM - 12 PM)</SelectItem>
+                    <SelectItem value="afternoon">☀️ Afternoon Batch (2 PM - 5 PM)</SelectItem>
+                    <SelectItem value="evening">🌆 Evening Batch (6 PM - 9 PM)</SelectItem>
+                    <SelectItem value="weekend">🎯 Weekend Batch (Sat-Sun)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex gap-4 pt-6 border-t border-slate-100">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={onClose} 
+                  className="flex-1 py-3 rounded-xl border-2"
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  type="button" 
+                  onClick={proceedToPayment}
+                  className="flex-1 btn-primary text-white py-3 rounded-xl font-semibold"
+                >
+                  Proceed to Payment
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </div>
+            </form>
+          </TabsContent>
+
+          <TabsContent value="payment">
+            <div className="space-y-6">
+              {selectedCourseData && (
+                <PaymentDetails
+                  courseId={selectedCourseData.id}
+                  courseName={selectedCourseData.title}
+                  coursePrice={selectedCourseData.price}
+                />
               )}
-            </Button>
-          </div>
-        </form>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="payment" className="text-slate-700 font-medium flex items-center">
+                    <CreditCard className="w-4 h-4 mr-2 text-emerald-600" />
+                    Payment Screenshot *
+                  </Label>
+                  <div className="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:border-blue-300 transition-colors bg-slate-50">
+                    <input
+                      id="payment"
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.pdf"
+                      onChange={handleFileChange}
+                      className="hidden"
+                      required
+                    />
+                    <Label htmlFor="payment" className="cursor-pointer block">
+                      <Upload className="w-12 h-12 mx-auto mb-4 text-slate-400" />
+                      <p className="text-lg font-medium text-slate-700 mb-2">
+                        {formData.paymentScreenshot ? formData.paymentScreenshot.name : 'Upload Payment Screenshot'}
+                      </p>
+                      <p className="text-sm text-slate-500">
+                        Drag & drop or click to browse • JPG, PNG, PDF (max 5MB)
+                      </p>
+                    </Label>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 pt-6 border-t border-slate-100">
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    onClick={() => setCurrentTab('form')} 
+                    className="flex-1 py-3 rounded-xl border-2"
+                  >
+                    Back to Form
+                  </Button>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="flex-1 btn-primary text-white py-3 rounded-xl font-semibold"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <CheckCircle className="w-5 h-5 mr-2" />
+                        Complete Registration
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </TabsContent>
+        </Tabs>
       </DialogContent>
     </Dialog>
   );

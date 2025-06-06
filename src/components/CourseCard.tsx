@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronUp, Clock, User, BookOpen, Star, ArrowRight } from 'lucide-react';
+import { ChevronDown, ChevronUp, Clock, User, BookOpen, Star, ArrowRight, Briefcase, Target } from 'lucide-react';
 import { Course } from '@/data/courses';
 
 interface CourseCardProps {
@@ -64,6 +64,22 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
           </div>
         </div>
 
+        {/* Projects Section */}
+        <div className="mb-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-100">
+          <h4 className="font-semibold mb-3 text-slate-800 flex items-center text-sm">
+            <Target className="w-4 h-4 mr-2 text-green-600" />
+            Real-World Projects
+          </h4>
+          <div className="space-y-2">
+            {course.projects.map((project, index) => (
+              <div key={index} className="flex items-start">
+                <Briefcase className="w-3 h-3 text-green-600 mt-1 mr-2 flex-shrink-0" />
+                <span className="text-xs text-slate-700 leading-relaxed">{project}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleTrigger asChild>
             <Button 
@@ -85,7 +101,7 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
                 Course Curriculum
               </h4>
               
-              <div className="space-y-2 max-h-48 overflow-y-auto">
+              <div className="space-y-2 max-h-32 overflow-y-auto">
                 {course.syllabus.map((week) => (
                   <div key={week.week} className="bg-white rounded-lg p-3 shadow-sm border border-blue-100">
                     <h5 className="font-medium text-slate-800 mb-2 flex items-center text-sm">
@@ -95,15 +111,15 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
                       {week.title}
                     </h5>
                     <ul className="space-y-1 ml-7">
-                      {week.topics.slice(0, 3).map((topic, index) => (
+                      {week.topics.slice(0, 2).map((topic, index) => (
                         <li key={index} className="text-xs text-slate-600 flex items-center">
                           <div className="w-1 h-1 bg-blue-400 rounded-full mr-2 flex-shrink-0" />
                           {topic}
                         </li>
                       ))}
-                      {week.topics.length > 3 && (
+                      {week.topics.length > 2 && (
                         <li className="text-xs text-slate-500 italic ml-3">
-                          +{week.topics.length - 3} more topics...
+                          +{week.topics.length - 2} more topics...
                         </li>
                       )}
                     </ul>
