@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronUp, Clock, User, BookOpen, Star, ArrowRight, Briefcase, Target, Code } from 'lucide-react';
+import { Clock, User, BookOpen, Star, ArrowRight, Code } from 'lucide-react';
 import { Course } from '@/data/courses';
+import SyllabusModal from './SyllabusModal';
 
 interface CourseCardProps {
   course: Course;
@@ -13,8 +13,6 @@ interface CourseCardProps {
 }
 
 const CourseCard = ({ course, onRegister }: CourseCardProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <Card className="group bg-white border border-slate-200 hover:border-slate-300 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
       <CardHeader className="pb-6 relative bg-gradient-to-br from-slate-50 to-blue-50/50">
@@ -83,54 +81,8 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
           </div>
         </div>
 
-        {/* Curriculum Section */}
-        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-          <CollapsibleTrigger asChild>
-            <Button 
-              variant="outline" 
-              className="w-full mb-4 justify-between py-3 rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all text-base font-medium"
-            >
-              <span className="flex items-center">
-                <BookOpen className="w-5 h-5 mr-2 text-slate-600" />
-                View Complete Curriculum
-              </span>
-              {isOpen ? 
-                <ChevronUp className="w-5 h-5 text-slate-600" /> : 
-                <ChevronDown className="w-5 h-5 text-slate-600" />
-              }
-            </Button>
-          </CollapsibleTrigger>
-          
-          <CollapsibleContent className="mb-6">
-            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-5 border border-indigo-200">
-              <div className="space-y-3 max-h-40 overflow-y-auto">
-                {course.syllabus.map((week) => (
-                  <div key={week.week} className="bg-white rounded-xl p-4 border border-indigo-100">
-                    <h5 className="font-semibold text-slate-900 mb-3 flex items-center text-base">
-                      <span className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-lg text-sm flex items-center justify-center mr-3">
-                        {week.week}
-                      </span>
-                      {week.title}
-                    </h5>
-                    <ul className="space-y-2 ml-11">
-                      {week.topics.slice(0, 2).map((topic, index) => (
-                        <li key={index} className="text-sm text-slate-600 flex items-center">
-                          <div className="w-2 h-2 bg-indigo-400 rounded-full mr-3 flex-shrink-0" />
-                          {topic}
-                        </li>
-                      ))}
-                      {week.topics.length > 2 && (
-                        <li className="text-sm text-slate-500 italic ml-5">
-                          +{week.topics.length - 2} more topics...
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
+        {/* Curriculum Modal */}
+        <SyllabusModal course={course} />
 
         <Button 
           onClick={() => onRegister(course.id)}
