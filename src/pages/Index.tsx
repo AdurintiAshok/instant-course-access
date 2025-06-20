@@ -4,7 +4,6 @@ import { ChevronDown, BookOpen, Users, Award, ArrowUp, Star, CheckCircle, Play, 
 import CourseCard from '@/components/CourseCard';
 import RegistrationModal from '@/components/RegistrationModal';
 import { courses, Course } from '@/data/courses';
-import { Hero } from '@/components/ui/animated-hero';
 
 const Index = () => {
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
@@ -27,7 +26,78 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <Hero />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-400/10 to-blue-400/10 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+          <div className="mb-8">
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-medium">
+              <Sparkles className="w-4 h-4 mr-2" />
+              Join 50,000+ Successful Learners
+            </span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            <span className="bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent">
+              Master Skills That
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Shape Your Future
+            </span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl mb-12 text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
+            Transform your career with industry-leading courses designed by experts. 
+            Learn practical skills, build real projects, and land your dream job.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
+            <Button 
+              onClick={scrollToCourses}
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
+            >
+              Explore Courses
+              <ChevronDown className="ml-2 w-5 h-5" />
+            </Button>
+            
+            <Button 
+              variant="outline"
+              size="lg"
+              className="px-8 py-4 text-lg rounded-xl border-2 border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
+            >
+              <Play className="mr-2 w-5 h-5" />
+              Watch Demo
+            </Button>
+          </div>
+          
+          {/* Stats Grid */}
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+            {[
+              { number: "98%", label: "Success Rate", icon: TrendingUp },
+              { number: "50+", label: "Expert Courses", icon: BookOpen },
+              { number: "24/7", label: "Support", icon: Globe }
+            ].map((stat, index) => (
+              <div key={index} className="text-center group">
+                <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <stat.icon className="w-6 h-6 text-blue-600" />
+                </div>
+                <div className="text-3xl font-bold text-slate-800 mb-1">{stat.number}</div>
+                <div className="text-slate-600 text-sm font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-slate-400 animate-bounce">
+          <ChevronDown className="w-6 h-6" />
+        </div>
+      </section>
 
       {/* Features Section */}
       <section className="py-24 bg-white border-t border-slate-100">
