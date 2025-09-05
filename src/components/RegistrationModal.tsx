@@ -28,17 +28,13 @@ const RegistrationModal = ({ isOpen, onClose, selectedCourse, courses }: Registr
     phone: '',
     courseId: selectedCourse?.id || '',
     preferredBatch: '',
-    paymentScreenshot: null as File | null
+    transactionDigits: ''
   });
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] || null;
-    setFormData(prev => ({ ...prev, paymentScreenshot: file }));
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,7 +60,7 @@ const RegistrationModal = ({ isOpen, onClose, selectedCourse, courses }: Registr
       phone: '',
       courseId: '',
       preferredBatch: '',
-      paymentScreenshot: null
+      transactionDigits: ''
     });
     setCurrentTab('form');
   };
@@ -235,29 +231,23 @@ const RegistrationModal = ({ isOpen, onClose, selectedCourse, courses }: Registr
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="payment" className="text-slate-700 font-medium flex items-center">
+                  <Label htmlFor="transactionDigits" className="text-slate-700 font-medium flex items-center">
                     <CreditCard className="w-4 h-4 mr-2 text-emerald-600" />
-                    Payment Screenshot *
+                    Payment Transaction Last 6 Digits *
                   </Label>
-                  <div className="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:border-blue-300 transition-colors bg-slate-50">
-                    <input
-                      id="payment"
-                      type="file"
-                      accept=".jpg,.jpeg,.png,.pdf"
-                      onChange={handleFileChange}
-                      className="hidden"
-                      required
-                    />
-                    <Label htmlFor="payment" className="cursor-pointer block">
-                      <Upload className="w-12 h-12 mx-auto mb-4 text-slate-400" />
-                      <p className="text-lg font-medium text-slate-700 mb-2">
-                        {formData.paymentScreenshot ? formData.paymentScreenshot.name : 'Upload Payment Screenshot'}
-                      </p>
-                      <p className="text-sm text-slate-500">
-                        Drag & drop or click to browse • JPG, PNG, PDF (max 5MB)
-                      </p>
-                    </Label>
-                  </div>
+                  <Input
+                    id="transactionDigits"
+                    value={formData.transactionDigits}
+                    onChange={(e) => handleInputChange('transactionDigits', e.target.value)}
+                    placeholder="Enter last 6 digits of transaction"
+                    className="rounded-xl border-slate-200 py-3 focus:border-blue-500"
+                    maxLength={6}
+                    pattern="[0-9]{6}"
+                    required
+                  />
+                  <p className="text-sm text-slate-500">
+                    Enter the last 6 digits of your payment transaction ID
+                  </p>
                 </div>
 
                 <div className="flex gap-4 pt-6 border-t border-slate-100">

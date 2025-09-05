@@ -33,18 +33,6 @@ const PaymentDetails = ({ courseId, courseName, coursePrice }: PaymentDetailsPro
 
   return (
     <div className="space-y-6">
-      {/* Security Notice */}
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-        <div className="flex items-start">
-          <Shield className="w-5 h-5 text-amber-600 mt-0.5 mr-3 flex-shrink-0" />
-          <div>
-            <h4 className="font-semibold text-amber-800 mb-1">Secure Payment Instructions</h4>
-            <p className="text-sm text-amber-700">
-              Use the unique reference ID below for your payment. This ensures your registration is processed correctly and securely.
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Course Details */}
       <Card>
@@ -60,10 +48,6 @@ const PaymentDetails = ({ courseId, courseName, coursePrice }: PaymentDetailsPro
             <div className="flex justify-between">
               <span className="text-slate-600">Amount:</span>
               <span className="font-bold text-green-600 text-lg">{coursePrice}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-slate-600">Reference ID:</span>
-              <span className="font-mono text-sm">{paymentRef}</span>
             </div>
           </div>
         </CardContent>
