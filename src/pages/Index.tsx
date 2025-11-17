@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronDown, BookOpen, Users, Award, ArrowUp, Star, CheckCircle, Play, Sparkles, TrendingUp, Globe } from 'lucide-react';
 import CourseCard from '@/components/CourseCard';
 import RegistrationModal from '@/components/RegistrationModal';
+import FallingConfetti from '@/components/FallingConfetti';
 import { courses, Course } from '@/data/courses';
 
 const Index = () => {
@@ -25,6 +26,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Falling Confetti Animation */}
+      <FallingConfetti />
+      
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
         {/* Background Elements */}

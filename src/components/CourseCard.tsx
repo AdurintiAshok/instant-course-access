@@ -1,8 +1,7 @@
-
-import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Clock, User, BookOpen, Star, ArrowRight, Code } from 'lucide-react';
 import { Course } from '@/data/courses';
 import SyllabusModal from './SyllabusModal';
@@ -63,23 +62,29 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
           </div>
         </div>
 
-        {/* Projects Section */}
-        <div className="mb-6 bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-5 border border-emerald-200">
-          <h4 className="font-semibold mb-4 text-slate-900 flex items-center text-base">
-            <Code className="w-5 h-5 mr-2 text-emerald-600" />
-            Build Real Projects
-          </h4>
-          <div className="space-y-3">
-            {course.projects.map((project, index) => (
-              <div key={index} className="flex items-start bg-white rounded-lg p-3 border border-emerald-100">
-                <div className="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3 mt-0.5 flex-shrink-0">
-                  {index + 1}
-                </div>
-                <span className="text-sm text-slate-700 leading-relaxed font-medium">{project}</span>
+        {/* Projects Section - Collapsible */}
+        <Accordion type="single" collapsible className="mb-6">
+          <AccordionItem value="projects" className="border-0">
+            <AccordionTrigger className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl px-5 py-4 border border-emerald-200 hover:no-underline hover:bg-gradient-to-br hover:from-emerald-100 hover:to-green-100">
+              <h4 className="font-semibold text-slate-900 flex items-center text-base">
+                <Code className="w-5 h-5 mr-2 text-emerald-600" />
+                Build Real Projects
+              </h4>
+            </AccordionTrigger>
+            <AccordionContent className="pt-4">
+              <div className="space-y-3">
+                {course.projects.map((project, index) => (
+                  <div key={index} className="flex items-start bg-gradient-to-br from-emerald-50 to-green-50 rounded-lg p-3 border border-emerald-100">
+                    <div className="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3 mt-0.5 flex-shrink-0">
+                      {index + 1}
+                    </div>
+                    <span className="text-sm text-slate-700 leading-relaxed font-medium">{project}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Curriculum Modal */}
         <SyllabusModal course={course} />
