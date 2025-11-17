@@ -4,6 +4,7 @@ import { ChevronDown, BookOpen, Users, Award, ArrowUp, Star, CheckCircle, Play, 
 import CourseCard from '@/components/CourseCard';
 import RegistrationModal from '@/components/RegistrationModal';
 import FallingConfetti from '@/components/FallingConfetti';
+import AnimatedTagline from '@/components/AnimatedTagline';
 import { courses, Course } from '@/data/courses';
 
 const Index = () => {
@@ -55,10 +56,12 @@ const Index = () => {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl mb-12 text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-xl md:text-2xl mb-6 text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
             Transform your career with industry-leading courses designed by experts. 
             Learn practical skills, build real projects, and land your dream job.
           </p>
+          
+          <AnimatedTagline />
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
             <Button 
