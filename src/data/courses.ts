@@ -19,155 +19,202 @@ export interface Course {
 export const courses: Course[] = [
   {
     id: "1",
-    title: "Full-Stack Web Development",
-    description: "Master modern web development with React, Node.js, and databases. Build complete applications from scratch.",
+    title: "Full-Stack Development",
+    description: "Master modern web development with React, Node.js, and MongoDB. Build complete full-stack applications from scratch.",
     category: "Programming",
     duration: "12 weeks",
     price: "$299",
     instructor: "Sarah Johnson",
-    level: "Beginner to Intermediate",
+    level: "Beginner to Advanced",
     projects: [
-      "Build a responsive e-commerce website with React and Node.js",
-      "Create a real-time chat application with WebSocket integration"
+      "Build a complete e-commerce platform with React and Node.js",
+      "Create a real-time social media application with MongoDB",
+      "Deploy a production-ready full-stack application to the cloud"
     ],
     syllabus: [
       {
         week: 1,
-        title: "HTML & CSS Fundamentals",
-        topics: ["HTML5 semantic elements", "CSS Grid & Flexbox", "Responsive design principles", "CSS animations"]
+        title: "React - Frontend Development",
+        topics: ["Components & JSX", "Hooks (useState, useEffect, useContext)", "React Router & Navigation", "State Management (Context API, Redux)", "API Integration & Fetch"]
       },
       {
         week: 2,
-        title: "JavaScript Essentials",
-        topics: ["ES6+ syntax", "DOM manipulation", "Async/await", "Modern JavaScript patterns"]
+        title: "React - Advanced Patterns",
+        topics: ["Custom Hooks", "Performance optimization", "Error boundaries", "Code splitting", "Testing with Jest"]
       },
       {
         week: 3,
-        title: "React Foundation",
-        topics: ["Components & JSX", "Props & State", "Event handling", "Hooks introduction"]
+        title: "Node.js - Backend Basics",
+        topics: ["Express.js setup", "REST API design", "Middleware functions", "Request/Response handling", "Error handling"]
       },
       {
         week: 4,
-        title: "Advanced React",
-        topics: ["Context API", "Custom hooks", "Performance optimization", "Testing with Jest"]
+        title: "Node.js - Authentication & Security",
+        topics: ["JWT authentication", "Password hashing", "Session management", "File handling & uploads", "Security best practices"]
       },
       {
         week: 5,
-        title: "Backend with Node.js",
-        topics: ["Express.js setup", "REST API design", "Authentication", "Database integration"]
+        title: "MongoDB - Database Fundamentals",
+        topics: ["Collections & Documents", "CRUD operations", "Aggregations & pipelines", "Indexing & optimization", "Mongoose ODM"]
       },
       {
         week: 6,
-        title: "Final Project",
-        topics: ["Project planning", "Full-stack integration", "Deployment", "Code review"]
+        title: "Frontend Architecture",
+        topics: ["Component structure", "State management patterns", "Routing strategies", "API layer design", "Performance optimization"]
+      },
+      {
+        week: 7,
+        title: "Backend API Creation",
+        topics: ["RESTful design patterns", "API versioning", "Rate limiting", "Caching strategies", "Documentation"]
+      },
+      {
+        week: 8,
+        title: "Database Modeling",
+        topics: ["Schema design", "Relationships", "Data normalization", "Query optimization", "Backup strategies"]
+      },
+      {
+        week: 9,
+        title: "Building Full-Stack Project - Part 1",
+        topics: ["Project planning", "Database schema", "API endpoints", "Frontend components", "Authentication flow"]
+      },
+      {
+        week: 10,
+        title: "Building Full-Stack Project - Part 2",
+        topics: ["Feature implementation", "Testing", "Error handling", "Performance tuning", "Security hardening"]
+      },
+      {
+        week: 11,
+        title: "Deployment Workflow",
+        topics: ["Environment setup", "Build optimization", "Cloud deployment (AWS/Heroku)", "CI/CD pipeline", "Monitoring & logging"]
+      },
+      {
+        week: 12,
+        title: "Final Project & Best Practices",
+        topics: ["Code review", "Documentation", "Scaling strategies", "Maintenance", "Career guidance"]
       }
     ]
   },
   {
     id: "2",
-    title: "Data Science with Python",
-    description: "Learn data analysis, visualization, and machine learning using Python, pandas, and scikit-learn.",
-    category: "Data Science",
+    title: "Programming Foundations",
+    description: "Build a strong foundation in programming with Python, Data Structures, and SQL. Perfect for interview preparation and problem-solving.",
+    category: "Programming",
     duration: "10 weeks",
     price: "$249",
     instructor: "Dr. Michael Chen",
-    level: "Intermediate",
+    level: "Beginner to Intermediate",
     projects: [
-      "Analyze sales data and create interactive dashboards",
-      "Build a machine learning model for customer behavior prediction"
+      "Develop a library management system with Python OOP",
+      "Implement common algorithms and data structures from scratch",
+      "Design and query a complete database schema for an e-commerce platform"
     ],
     syllabus: [
       {
         week: 1,
-        title: "Python for Data Science",
-        topics: ["NumPy fundamentals", "Pandas data manipulation", "Jupyter notebooks", "Data types & structures"]
+        title: "Python - Basics",
+        topics: ["Variables & data types", "Control flow (if/else, loops)", "Functions & parameters", "String manipulation", "Input/Output operations"]
       },
       {
         week: 2,
-        title: "Data Visualization",
-        topics: ["Matplotlib basics", "Seaborn styling", "Interactive plots with Plotly", "Dashboard creation"]
+        title: "Python - OOP & Modules",
+        topics: ["Classes & Objects", "Inheritance & Polymorphism", "Modules & Packages", "File handling", "Exception handling"]
       },
       {
         week: 3,
-        title: "Statistical Analysis",
-        topics: ["Descriptive statistics", "Hypothesis testing", "Correlation analysis", "Distribution analysis"]
+        title: "Data Structures - Linear",
+        topics: ["Arrays & Lists", "Stacks & Queues", "Linked Lists (Single, Double, Circular)", "Time complexity analysis", "Space complexity"]
       },
       {
         week: 4,
-        title: "Machine Learning Basics",
-        topics: ["Supervised learning", "Model evaluation", "Cross-validation", "Feature engineering"]
+        title: "Data Structures - Non-Linear",
+        topics: ["Trees (Binary, BST, AVL)", "Graphs (Directed, Undirected)", "Hash tables", "Heaps", "Tries"]
       },
       {
         week: 5,
-        title: "Advanced ML Techniques",
-        topics: ["Ensemble methods", "Deep learning intro", "Natural language processing", "Time series analysis"]
+        title: "SQL - Fundamentals",
+        topics: ["SELECT queries", "WHERE, ORDER BY, GROUP BY", "Joins (INNER, LEFT, RIGHT, FULL)", "Constraints (PRIMARY KEY, FOREIGN KEY)", "Data types"]
+      },
+      {
+        week: 6,
+        title: "SQL - Advanced",
+        topics: ["Stored procedures", "Triggers", "Views & indexes", "Query optimization", "Transactions"]
+      },
+      {
+        week: 7,
+        title: "Logical Problem Solving",
+        topics: ["Problem decomposition", "Pattern recognition", "Algorithm design", "Debugging strategies", "Code optimization"]
+      },
+      {
+        week: 8,
+        title: "Writing Clean Code",
+        topics: ["Naming conventions", "Code organization", "DRY principles", "Documentation", "Code refactoring"]
+      },
+      {
+        week: 9,
+        title: "Understanding Algorithms",
+        topics: ["Sorting algorithms", "Searching algorithms", "Dynamic programming", "Greedy algorithms", "Recursion"]
+      },
+      {
+        week: 10,
+        title: "Interview-Focused Coding Practice",
+        topics: ["Common interview patterns", "Leetcode-style problems", "System design basics", "Mock interviews", "Resume building"]
       }
     ]
   },
   {
     id: "3",
-    title: "Digital Marketing Mastery",
-    description: "Comprehensive digital marketing course covering SEO, social media, content marketing, and analytics.",
-    category: "Marketing",
+    title: "DevOps & Cloud Tools",
+    description: "Learn essential DevOps practices and cloud technologies with Git, Docker, and AWS. Deploy and manage applications at scale.",
+    category: "DevOps",
     duration: "8 weeks",
     price: "$199",
     instructor: "Emma Rodriguez",
-    level: "Beginner",
+    level: "Intermediate",
     projects: [
-      "Launch a complete digital marketing campaign for a local business",
-      "Create and optimize a content marketing strategy with measurable results"
+      "Set up a complete Git workflow for team collaboration",
+      "Containerize a multi-service application with Docker Compose",
+      "Deploy a scalable web application on AWS with CI/CD pipeline"
     ],
     syllabus: [
       {
         week: 1,
-        title: "Digital Marketing Fundamentals",
-        topics: ["Marketing strategy", "Customer personas", "Marketing funnel", "Digital channels overview"]
+        title: "Git - Version Control Basics",
+        topics: ["Git initialization", "Commits & staging", "Branching strategies", "Merging & rebasing", "Resolving conflicts"]
       },
       {
         week: 2,
-        title: "Search Engine Optimization",
-        topics: ["Keyword research", "On-page optimization", "Technical SEO", "Link building strategies"]
+        title: "Git - Collaboration Workflow",
+        topics: ["Pull requests", "Code reviews", "GitHub/GitLab workflow", "Gitflow model", "Best practices"]
       },
       {
         week: 3,
-        title: "Social Media Marketing",
-        topics: ["Platform strategies", "Content creation", "Community management", "Paid advertising"]
+        title: "Docker - Fundamentals",
+        topics: ["Containers vs VMs", "Docker images", "Dockerfiles", "Container lifecycle", "Docker Hub"]
       },
       {
         week: 4,
-        title: "Content Marketing & Analytics",
-        topics: ["Content strategy", "Email marketing", "Google Analytics", "Performance tracking"]
-      }
-    ]
-  },
-  {
-    id: "4",
-    title: "UI/UX Design Essentials",
-    description: "Learn user-centered design principles, prototyping, and create stunning digital experiences.",
-    category: "Design",
-    duration: "6 weeks",
-    price: "$179",
-    instructor: "Alex Kim",
-    level: "Beginner",
-    projects: [
-      "Design a complete mobile app interface from wireframes to high-fidelity prototypes",
-      "Conduct user research and redesign an existing website for better usability"
-    ],
-    syllabus: [
-      {
-        week: 1,
-        title: "Design Thinking",
-        topics: ["User research methods", "Personas & user journeys", "Problem definition", "Design process"]
+        title: "Docker - Advanced",
+        topics: ["Volumes & persistence", "Docker networks", "Multi-container apps", "Docker Compose", "Optimization techniques"]
       },
       {
-        week: 2,
-        title: "UI Design Principles",
-        topics: ["Typography", "Color theory", "Layout & composition", "Design systems"]
+        week: 5,
+        title: "AWS - Cloud Basics",
+        topics: ["EC2 instances", "S3 storage", "IAM users & roles", "Security groups", "VPC basics"]
       },
       {
-        week: 3,
-        title: "Prototyping & Tools",
-        topics: ["Wireframing", "Figma mastery", "Interactive prototypes", "Design handoff"]
+        week: 6,
+        title: "AWS - Serverless & Deployment",
+        topics: ["Lambda functions", "API Gateway", "CloudFormation", "Elastic Beanstalk", "Cloud deployment strategies"]
+      },
+      {
+        week: 7,
+        title: "CI/CD Introduction",
+        topics: ["Build automation", "Testing pipelines", "Deployment automation", "GitHub Actions/Jenkins", "Monitoring & alerts"]
+      },
+      {
+        week: 8,
+        title: "Project Collaboration & Best Practices",
+        topics: ["Team workflows", "Infrastructure as Code", "Container orchestration intro", "Security best practices", "Cost optimization"]
       }
     ]
   }
