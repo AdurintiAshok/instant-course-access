@@ -1,15 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, BookOpen, Users, Award, ArrowUp, Star, CheckCircle, Play, Sparkles, TrendingUp, Globe } from 'lucide-react';
 import CourseCard from '@/components/CourseCard';
 import RegistrationModal from '@/components/RegistrationModal';
 import FallingConfetti from '@/components/FallingConfetti';
 import AnimatedTagline from '@/components/AnimatedTagline';
+import Footer from '@/components/Footer';
 import { courses, Course } from '@/data/courses';
 
 const Index = () => {
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [showConfetti, setShowConfetti] = useState(true);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+
+  useEffect(() => {
+    // Start fade out after 4 seconds
+    const fadeTimer = setTimeout(() => {
+      setIsFadingOut(true);
+    }, 4000);
+
+    // Remove component after 5 seconds (1s fade duration)
+    const removeTimer = setTimeout(() => {
+      setShowConfetti(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (window.location.hash === '#courses') {
+      const element = document.getElementById('courses');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
 
   const handleRegister = (courseId: string) => {
     const course = courses.find(c => c.id === courseId);
@@ -28,8 +57,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Falling Confetti Animation */}
-      <FallingConfetti />
-      
+      {showConfetti && (
+        <div className={`transition-opacity duration-1000 ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}>
+          <FallingConfetti />
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
         {/* Background Elements */}
@@ -37,16 +70,15 @@ const Index = () => {
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl" />
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-400/10 to-blue-400/10 rounded-full blur-3xl" />
         </div>
-        
+
         <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-          <div className="mb-8">
+          <div className="mb-8 hidden md:block">
             <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-medium">
               <Sparkles className="w-4 h-4 mr-2" />
               Join 50,000+ Successful Learners
             </span>
           </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+          <h1 className="mt-10 md:mt-0 text-5xl md:text-7xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent">
               Master Skills That
             </span>
@@ -55,16 +87,17 @@ const Index = () => {
               Shape Your Future
             </span>
           </h1>
-          
+
+
           <p className="text-xl md:text-2xl mb-6 text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
-            Transform your career with industry-leading courses designed by experts. 
+            Transform your career with industry-leading courses designed by experts.
             Learn practical skills, build real projects, and land your dream job.
           </p>
-          
+
           <AnimatedTagline />
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-            <Button 
+            <Button
               onClick={scrollToCourses}
               size="lg"
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
@@ -72,8 +105,8 @@ const Index = () => {
               Explore Courses
               <ChevronDown className="ml-2 w-5 h-5" />
             </Button>
-            
-            <Button 
+
+            <Button
               variant="outline"
               size="lg"
               className="px-8 py-4 text-lg rounded-xl border-2 border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
@@ -82,7 +115,7 @@ const Index = () => {
               Watch Demo
             </Button>
           </div>
-          
+
           {/* Stats Grid */}
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             {[
@@ -117,7 +150,7 @@ const Index = () => {
               Everything you need to succeed in your learning journey, backed by industry expertise
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
@@ -128,7 +161,7 @@ const Index = () => {
               },
               {
                 icon: Users,
-                title: "Community Support", 
+                title: "Community Support",
                 description: "Join a thriving community of learners and get help from peers and mentors whenever you need it",
                 gradient: "from-green-500 to-emerald-500"
               },
@@ -166,7 +199,7 @@ const Index = () => {
               Handpicked courses designed by industry experts to help you master in-demand skills and advance your career
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {courses.map((course) => (
               <CourseCard
@@ -188,102 +221,60 @@ const Index = () => {
             </h2>
             <p className="text-xl text-slate-600 font-light">Real stories from real learners</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
-                name: "Sarah Johnson",
-                role: "Software Developer at Google",
-                content: "The courses are incredibly well-structured and the instructors are top-notch. I landed my dream job within 3 months of completing the program!",
+                name: "Aarav Reddy",
+                role: "Fresher at Infosys",
+                content: "The course helped me build strong fundamentals. I cracked my Infosys interview with confidence thanks to the hands-on projects!",
                 rating: 5,
-                avatar: "SJ"
+                avatar: "AR"
               },
               {
-                name: "Michael Chen",
-                role: "Product Manager at Microsoft", 
-                content: "Excellent platform with practical, hands-on learning. The community support is fantastic and the projects were exactly what I needed for my portfolio.",
+                name: "Uday Kiran",
+                role: "Fresher at TCS",
+                content: "Very beginner-friendly and practical. The exercises improved my problem-solving skills and the guidance was amazing throughout.",
                 rating: 5,
-                avatar: "MC"
+                avatar: "SP"
               },
               {
-                name: "Emily Rodriguez",
-                role: "Data Scientist at Netflix",
-                content: "The best investment I've made in my career. The skills I learned here directly apply to my daily work and helped me get promoted twice!",
+                name: "Rupesh Kumar",
+                role: "Fresher at Young Minds",
+                content: "The best platform for freshers! The clear explanations and real-world projects helped me get placed in Cognizant.",
                 rating: 5,
-                avatar: "ER"
+                avatar: "KM"
               }
-            ].map((testimonial, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-2xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold mr-4">
-                      {testimonial.avatar}
+            ]
+              .map((testimonial, index) => (
+                <div key={index} className="group">
+                  <div className="bg-white rounded-2xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300 h-full">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                        {testimonial.avatar}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-slate-900">{testimonial.name}</div>
+                        <div className="text-slate-600 text-sm">{testimonial.role}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="font-semibold text-slate-900">{testimonial.name}</div>
-                      <div className="text-slate-600 text-sm">{testimonial.role}</div>
+
+                    <div className="flex mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                      ))}
                     </div>
+
+                    <p className="text-slate-600 leading-relaxed">"{testimonial.content}"</p>
                   </div>
-                  
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  
-                  <p className="text-slate-600 leading-relaxed">"{testimonial.content}"</p>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div className="col-span-1 md:col-span-2">
-              <h3 className="text-3xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  LearnHub Academy
-                </span>
-              </h3>
-              <p className="text-slate-400 mb-8 max-w-md leading-relaxed">
-                Empowering learners worldwide with expert-led courses designed for real-world success. Transform your career with industry-proven curriculum.
-              </p>
-              <div className="flex items-center gap-4">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span className="text-slate-300">Trusted by 50,000+ students globally</span>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-8 text-white text-lg">Quick Links</h4>
-              <div className="space-y-4 text-slate-400">
-                <p className="hover:text-white cursor-pointer transition-colors">About Us</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Contact</p>
-                <p className="hover:text-white cursor-pointer transition-colors">FAQs</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Support</p>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-8 text-white text-lg">Follow Us</h4>
-              <div className="space-y-4 text-slate-400">
-                <p className="hover:text-white cursor-pointer transition-colors">LinkedIn</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Twitter</p>
-                <p className="hover:text-white cursor-pointer transition-colors">Instagram</p>
-                <p className="hover:text-white cursor-pointer transition-colors">YouTube</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
-            <p>&copy; 2024 LearnHub Academy. All rights reserved. Built with ❤️ for learners worldwide.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Scroll to Top Button */}
       <Button

@@ -16,8 +16,8 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
     <Card className="group bg-white border border-slate-200 hover:border-slate-300 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
       <CardHeader className="pb-6 relative bg-gradient-to-br from-slate-50 to-blue-50/50">
         <div className="flex justify-between items-start mb-4">
-          <Badge 
-            variant="secondary" 
+          <Badge
+            variant="secondary"
             className="bg-blue-100 text-blue-700 hover:bg-blue-200 border-0 px-3 py-1 rounded-full text-sm font-medium"
           >
             {course.category}
@@ -30,16 +30,16 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
             </div>
           </div>
         </div>
-        
+
         <CardTitle className="text-2xl mb-3 text-slate-900 leading-tight font-bold">
           {course.title}
         </CardTitle>
-        
+
         <CardDescription className="text-slate-600 leading-relaxed text-base">
           {course.description}
         </CardDescription>
       </CardHeader>
-      
+
       <CardContent className="pt-6 pb-6">
         {/* Course Info Grid */}
         <div className="grid grid-cols-3 gap-4 mb-6">
@@ -48,13 +48,13 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
             <div className="text-xs text-slate-600 mb-1">Duration</div>
             <div className="text-sm font-semibold text-slate-900">{course.duration}</div>
           </div>
-          
+
           <div className="text-center p-3 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200">
             <User className="w-5 h-5 mx-auto mb-2 text-green-600" />
             <div className="text-xs text-slate-600 mb-1">Instructor</div>
             <div className="text-sm font-semibold text-slate-900">{course.instructor}</div>
           </div>
-          
+
           <div className="text-center p-3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200">
             <BookOpen className="w-5 h-5 mx-auto mb-2 text-purple-600" />
             <div className="text-xs text-slate-600 mb-1">Level</div>
@@ -89,7 +89,7 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
         {/* Curriculum Modal */}
         <SyllabusModal course={course} />
 
-        <Button 
+        <Button
           onClick={() => onRegister(course.id)}
           className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-xl text-base font-semibold shadow-lg hover:shadow-xl group transition-all"
         >

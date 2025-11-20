@@ -23,8 +23,8 @@ export const courses: Course[] = [
     description: "Master modern web development with React, Node.js, and MongoDB. Build complete full-stack applications from scratch.",
     category: "Programming",
     duration: "12 weeks",
-    price: "$299",
-    instructor: "Sarah Johnson",
+    price: "1999",
+    instructor: "Ashok",
     level: "Beginner to Advanced",
     projects: [
       "Build a complete e-commerce platform with React and Node.js",
@@ -100,8 +100,8 @@ export const courses: Course[] = [
     description: "Build a strong foundation in programming with Python, Data Structures, and SQL. Perfect for interview preparation and problem-solving.",
     category: "Programming",
     duration: "10 weeks",
-    price: "$249",
-    instructor: "Dr. Michael Chen",
+    price: "1499",
+    instructor: "Rupesh",
     level: "Beginner to Intermediate",
     projects: [
       "Develop a library management system with Python OOP",
@@ -161,63 +161,67 @@ export const courses: Course[] = [
       }
     ]
   },
-  {
-    id: "3",
-    title: "DevOps & Cloud Tools",
-    description: "Learn essential DevOps practices and cloud technologies with Git, Docker, and AWS. Deploy and manage applications at scale.",
-    category: "DevOps",
-    duration: "8 weeks",
-    price: "$199",
-    instructor: "Emma Rodriguez",
-    level: "Intermediate",
-    projects: [
-      "Set up a complete Git workflow for team collaboration",
-      "Containerize a multi-service application with Docker Compose",
-      "Deploy a scalable web application on AWS with CI/CD pipeline"
-    ],
-    syllabus: [
-      {
-        week: 1,
-        title: "Git - Version Control Basics",
-        topics: ["Git initialization", "Commits & staging", "Branching strategies", "Merging & rebasing", "Resolving conflicts"]
-      },
-      {
-        week: 2,
-        title: "Git - Collaboration Workflow",
-        topics: ["Pull requests", "Code reviews", "GitHub/GitLab workflow", "Gitflow model", "Best practices"]
-      },
-      {
-        week: 3,
-        title: "Docker - Fundamentals",
-        topics: ["Containers vs VMs", "Docker images", "Dockerfiles", "Container lifecycle", "Docker Hub"]
-      },
-      {
-        week: 4,
-        title: "Docker - Advanced",
-        topics: ["Volumes & persistence", "Docker networks", "Multi-container apps", "Docker Compose", "Optimization techniques"]
-      },
-      {
-        week: 5,
-        title: "AWS - Cloud Basics",
-        topics: ["EC2 instances", "S3 storage", "IAM users & roles", "Security groups", "VPC basics"]
-      },
-      {
-        week: 6,
-        title: "AWS - Serverless & Deployment",
-        topics: ["Lambda functions", "API Gateway", "CloudFormation", "Elastic Beanstalk", "Cloud deployment strategies"]
-      },
-      {
-        week: 7,
-        title: "CI/CD Introduction",
-        topics: ["Build automation", "Testing pipelines", "Deployment automation", "GitHub Actions/Jenkins", "Monitoring & alerts"]
-      },
-      {
-        week: 8,
-        title: "Project Collaboration & Best Practices",
-        topics: ["Team workflows", "Infrastructure as Code", "Container orchestration intro", "Security best practices", "Cost optimization"]
-      }
-    ]
-  }
+  // {
+  //   id: "3",
+  //   title: "DevOps Essentials - Git & Docker",
+  //   description: "Learn core DevOps essentials focusing on Git for version control and Docker for containerization. Perfect for beginners entering the DevOps world.",
+  //   category: "DevOps",
+  //   duration: "4 weeks",
+  //   price: "599",
+  //   instructor: "Akash",
+  //   level: "Beginner to Intermediate",
+  //   projects: [
+  //     "Set up a complete Git workflow for team collaboration",
+  //     "Containerize a multi-service application with Docker Compose"
+  //   ],
+  //   syllabus: [
+  //     {
+  //       week: 1,
+  //       title: "Git - Version Control Basics",
+  //       topics: [
+  //         "Git initialization",
+  //         "Commits & staging",
+  //         "Branching strategies",
+  //         "Merging & rebasing",
+  //         "Resolving conflicts"
+  //       ]
+  //     },
+  //     {
+  //       week: 2,
+  //       title: "Git - Collaboration Workflow",
+  //       topics: [
+  //         "Pull requests",
+  //         "Code reviews",
+  //         "GitHub/GitLab workflow",
+  //         "Gitflow model",
+  //         "Best practices"
+  //       ]
+  //     },
+  //     {
+  //       week: 3,
+  //       title: "Docker - Fundamentals",
+  //       topics: [
+  //         "Containers vs VMs",
+  //         "Docker images",
+  //         "Dockerfiles",
+  //         "Container lifecycle",
+  //         "Docker Hub"
+  //       ]
+  //     },
+  //     {
+  //       week: 4,
+  //       title: "Docker - Advanced",
+  //       topics: [
+  //         "Volumes & persistence",
+  //         "Docker networks",
+  //         "Multi-container apps",
+  //         "Docker Compose",
+  //         "Optimization techniques"
+  //       ]
+  //     }
+  //   ]
+  // }
+
 ];
 
 // Payment configuration
