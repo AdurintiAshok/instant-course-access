@@ -1,5 +1,6 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { BookOpen } from 'lucide-react';
@@ -33,30 +34,35 @@ const SyllabusModal = ({ course }: SyllabusModalProps) => {
         </DialogHeader>
 
         <ScrollArea className="mt-4 h-[60vh] pr-4">
-          <div className="space-y-4 md:space-y-6">
+          <Accordion type="single" collapsible className="space-y-4">
             {course.syllabus.map((week) => (
-              <div key={week.week} className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-4 md:p-6 border border-indigo-200">
-                <h3 className="font-bold text-slate-900 mb-3 md:mb-4 flex items-center text-base md:text-lg">
-                  <span className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-lg text-xs md:text-sm flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
-                    {week.week}
-                  </span>
-                  {week.title}
-                </h3>
-
-                <div className="ml-11 md:ml-14">
-                  <h4 className="font-semibold text-slate-800 mb-2 md:mb-3 text-sm md:text-base">Topics Covered:</h4>
-                  <ul className="space-y-2 md:space-y-3">
-                    {week.topics.map((topic, index) => (
-                      <li key={index} className="text-slate-700 flex items-start text-xs md:text-sm leading-relaxed">
-                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-indigo-400 rounded-full mr-2 md:mr-3 mt-1.5 md:mt-2 flex-shrink-0" />
-                        <span>{topic}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <AccordionItem key={week.week} value={`week-${week.week}`} className="border-0">
+                <AccordionTrigger className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl px-6 py-4 border border-indigo-200 hover:no-underline hover:bg-gradient-to-br hover:from-indigo-100 hover:to-blue-100 transition-all group">
+                  <div className="flex items-center text-left">
+                    <span className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-lg text-sm flex items-center justify-center mr-4 flex-shrink-0 shadow-md group-hover:scale-105 transition-transform">
+                      {week.week}
+                    </span>
+                    <span className="font-bold text-slate-900 text-lg">
+                      {week.title}
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4 pt-2">
+                  <div className="ml-14 mt-2">
+                    <h4 className="font-semibold text-slate-800 mb-3 text-base">Topics Covered:</h4>
+                    <ul className="space-y-3">
+                      {week.topics.map((topic, index) => (
+                        <li key={index} className="text-slate-700 flex items-start text-sm leading-relaxed">
+                          <div className="w-2 h-2 bg-indigo-400 rounded-full mr-3 mt-2 flex-shrink-0" />
+                          <span>{topic}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </ScrollArea>
       </DialogContent>
     </Dialog>
