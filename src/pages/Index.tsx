@@ -78,7 +78,7 @@ const Index = () => {
               Join 50,000+ Successful Learners
             </span>
           </div>
-          <h1 className="mt-6 md:mt-0 text-5xl md:text-7xl font-bold mb-8 leading-tight">
+          <h1 className="mt-24 md:mt-0 text-5xl md:text-7xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent">
               Master Skills That
             </span>
