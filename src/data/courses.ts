@@ -101,7 +101,7 @@ export const courses: Course[] = [
     category: "Programming",
     duration: "10 weeks",
     price: "1499",
-    instructor: "Rupesh",
+    instructor: "Ashok",
     level: "Beginner to Intermediate",
     projects: [
       "Develop a library management system with Python OOP",

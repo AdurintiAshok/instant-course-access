@@ -234,7 +234,7 @@ const Index = () => {
               },
               {
                 name: "Uday Kiran",
-                role: "Fresher at TCS",
+                role: "Fresher at Sphere Cloud Systems",
                 content: "Very beginner-friendly and practical. The exercises improved my problem-solving skills and the guidance was amazing throughout.",
                 rating: 5,
                 avatar: "SP"
