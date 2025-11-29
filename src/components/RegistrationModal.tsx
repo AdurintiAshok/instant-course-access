@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Course } from '@/data/courses';
 import { Loader2, CheckCircle, User, Mail, Phone, GraduationCap, Info, X } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 interface RegistrationModalProps {
   isOpen: boolean;
@@ -76,13 +77,36 @@ const RegistrationModal = ({ isOpen, onClose, selectedCourse, courses }: Registr
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    const selectedCourseDetails = courses.find(c => c.id === formData.courseId);
 
-    console.log('Registration submitted:', formData);
+    const templateParams = {
+      to_email: "techlogicwise@gmail.com",
+      name: formData.name,
+      email: formData.email,
+      phone_number: formData.phone,
+      course: selectedCourseDetails?.title || 'Unknown Course',
+    };
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_REGISTRATION_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      console.log('Registration submitted:', formData);
+      setIsSuccess(true);
+    } catch (error) {
+      console.error('FAILED...', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit registration. Please try again later.",
+        variant: "destructive",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

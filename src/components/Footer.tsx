@@ -9,7 +9,7 @@ const Footer = () => {
                     <div className="col-span-1 md:col-span-2">
                         <h3 className="text-3xl font-bold mb-6">
                             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                                LearnHub Academy
+                                Tech Logicwise
                             </span>
                         </h3>
                         <p className="text-slate-400 mb-8 max-w-md leading-relaxed">
@@ -42,7 +42,7 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
-                    <p>&copy; 2024 LearnHub Academy. All rights reserved. Built with ❤️ for learners worldwide.</p>
+                    <p>&copy; 2025 Tech Hub. All rights reserved. Built with ❤️ for learners worldwide.</p>
                 </div>
             </div>
         </footer>

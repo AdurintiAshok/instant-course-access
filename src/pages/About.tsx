@@ -27,7 +27,7 @@ const About = () => {
                         <div>
                             <h2 className="text-3xl font-bold mb-6 text-slate-900">Our Mission</h2>
                             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                                Founded in 2024, LearnHub Academy has helped thousands of students launch their careers in technology. We focus on practical, hands-on learning that prepares you for real-world challenges.
+                                Founded in 2025, Tech Logicwise  has helped thousands of students launch their careers in technology. We focus on practical, hands-on learning that prepares you for real-world challenges.
                             </p>
                             <p className="text-slate-600 text-lg leading-relaxed">
                                 Our curriculum is constantly updated to reflect the latest industry trends, ensuring that our students are always ahead of the curve.

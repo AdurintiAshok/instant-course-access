@@ -20,20 +20,16 @@ const FAQ = () => {
             answer: "Yes! Most of our courses are designed to take you from a beginner level to industry-ready. We also offer intermediate and advanced courses for those looking to upskill."
         },
         {
-            question: "Do I get a certificate after completion?",
-            answer: "Absolutely. Upon successful completion of any course and its associated projects, you will receive a verified certificate from LearnHub Academy that you can share on LinkedIn and your resume."
-        },
-        {
             question: "What is the mode of instruction?",
             answer: "Our courses are a blend of self-paced video lessons, live mentorship sessions, and hands-on projects. This ensures you learn at your own pace while getting the support you need."
         },
         {
             question: "How can I contact support?",
-            answer: "You can reach our support team via the Contact Us page, or email us directly at support@learnhub.com. We typically respond within 24 hours."
+            answer: "You can reach our support team via the Contact Us page, or email us directly at techlogicwise@gmail.com. We typically respond within 24 hours."
         },
         {
             question: "Is there a refund policy?",
-            answer: "We offer a 7-day money-back guarantee if you're not satisfied with the course content. Please contact our support team for assistance."
+            answer: "We offer a 1-day money-back guarantee if you're not satisfied with the course content. Please contact our support team for assistance."
         }
     ];
 

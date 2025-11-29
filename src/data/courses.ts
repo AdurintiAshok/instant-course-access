@@ -96,7 +96,7 @@ export const courses: Course[] = [
   },
   {
     id: "2",
-    title: "Programming Foundations",
+    title: "Python & SQL",
     description: "Build a strong foundation in programming with Python, Data Structures, and SQL. Perfect for interview preparation and problem-solving.",
     category: "Programming",
     duration: "10 weeks",
@@ -229,7 +229,7 @@ export const paymentConfig = {
   phoneNumber: "+1-555-LEARN-01",
   qrCodeUrl: "/api/placeholder/200/200", // This would be replaced with actual QR code
   bankDetails: {
-    accountName: "LearnHub Academy",
+    accountName: "techlogicwise",
     accountNumber: "****1234",
     routingNumber: "****5678"
   }

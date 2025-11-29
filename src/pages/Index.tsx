@@ -107,14 +107,14 @@ const Index = () => {
               <ChevronDown className="ml-2 w-5 h-5" />
             </Button>
 
-            <Button
+            {/* <Button
               variant="outline"
               size="lg"
               className="px-8 py-4 text-lg rounded-xl border-2 border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
             >
               <Play className="mr-2 w-5 h-5" />
               Watch Demo
-            </Button>
+            </Button> */}
           </div>
 
           {/* Stats Grid */}
