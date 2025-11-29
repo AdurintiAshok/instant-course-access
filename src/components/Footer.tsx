@@ -42,7 +42,7 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
-                    <p>&copy; 2025 Tech Hub. All rights reserved. Built with ❤️ for learners worldwide.</p>
+                    <p>&copy; 2025 Tech Logicwise. All rights reserved. Built with ❤️ for learners worldwide.</p>
                 </div>
             </div>
         </footer>
