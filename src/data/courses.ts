@@ -224,6 +224,7 @@ export const courses: Course[] = [
 
 ];
 
+
 // Payment configuration
 export const paymentConfig = {
   phoneNumber: "+1-555-LEARN-01",
