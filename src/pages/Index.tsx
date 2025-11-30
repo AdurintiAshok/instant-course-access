@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, BookOpen, Users, Award, ArrowUp, Star, CheckCircle, Play, Sparkles, TrendingUp, Globe } from 'lucide-react';
 import CourseCard from '@/components/CourseCard';
@@ -79,13 +80,22 @@ const Index = () => {
             </span>
           </div>
           <h1 className="mt-24 md:mt-0 text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            <span className="bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent block"
+            >
               Master Skills That
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block"
+            >
               Shape Your Future
-            </span>
+            </motion.span>
           </h1>
 
 
