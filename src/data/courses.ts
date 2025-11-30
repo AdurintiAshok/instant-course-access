@@ -24,7 +24,7 @@ export const courses: Course[] = [
     category: "Programming",
     duration: "12 weeks",
     price: "1999",
-    instructor: "Ashok",
+    instructor: "4+ Years Experienced Developer",
     level: "Beginner to Advanced",
     projects: [
       "Build a complete e-commerce platform with React and Node.js",
@@ -101,7 +101,7 @@ export const courses: Course[] = [
     category: "Programming",
     duration: "10 weeks",
     price: "1499",
-    instructor: "Ashok",
+    instructor: "4+ Years Experienced Developer",
     level: "Beginner to Intermediate",
     projects: [
       "Develop a library management system with Python OOP",
