@@ -22,7 +22,7 @@ export const courses: Course[] = [
     title: "Full-Stack Development",
     description: "Master modern web development with React, Node.js, and MongoDB. Build complete full-stack applications from scratch.",
     category: "Programming",
-    duration: "12 weeks",
+    duration: "10 weeks",
     price: "1999",
     instructor: "4+ Years Experienced Developer",
     level: "Beginner to Advanced",
